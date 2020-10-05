@@ -1,6 +1,10 @@
 package br.com.neo.solid.user;
 
+import java.util.Arrays;
 import java.util.List;
+
+import br.com.neo.solid.profile.Profile;
+import br.com.neo.solid.user.User.UserType;
 
 public class UserService {
 
@@ -23,6 +27,23 @@ public class UserService {
     }
 
     public User persist(User user) {
+        if (user.getUserType() == UserType.ADMIN) {
+            user.setProfiles(Arrays.asList(
+                Profile.ADMIN
+            ));
+        } else if (user.getUserType() == UserType.PUBLISHER) {
+            user.setProfiles(Arrays.asList(
+                Profile.PUBLISH,
+                Profile.DELETE,
+                Profile.LIST
+            ));            
+        } else if (user.getUserType() == UserType.COMMON) {
+            user.setProfiles(Arrays.asList(
+                Profile.CREATE,
+                Profile.LIST,
+                Profile.UPDATE
+            ));
+        }
         return repo.persist(user);
     }
 

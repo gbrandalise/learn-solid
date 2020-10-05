@@ -1,10 +1,16 @@
 package br.com.neo.solid.user;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
+
+import br.com.neo.solid.profile.Profile;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
 
     public enum UserType {
@@ -12,8 +18,12 @@ public class User {
     }
 
     private Long id;
+    @NonNull
     private String login;
+    @NonNull
     private String name;
+    @NonNull
     private UserType userType;
+    private List<Profile> profiles;
     
 }

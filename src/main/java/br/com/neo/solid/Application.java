@@ -13,13 +13,13 @@ public class Application {
         UserRepository repo = new UserRepository();
         UserService service = new UserService(repo);
 
-        User user = new User(null, "comum", "Usuário Comum", UserType.COMMON);
+        User user = new User("comum", "Usuário Comum", UserType.COMMON);
         service.persist(user);
 
-        user = new User(null, "admin", "Administrador", UserType.ADMIN);
+        user = new User("admin", "Administrador", UserType.ADMIN);
         service.persist(user);
 
-        user = new User(null, "publicador", "Publicador", UserType.PUBLISHER);
+        user = new User("publicador", "Publicador", UserType.PUBLISHER);
         service.persist(user);
 
         List<User> users = service.findAll();
