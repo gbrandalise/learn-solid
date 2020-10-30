@@ -26,7 +26,7 @@ public class UserService {
         return repo.findByLogin(login).orElse(null);
     }
 
-    public User persist(User user) {
+    private void setDefaultPermissions(User user) {
         if (user.getProfile() == Profile.ADMIN) {
             user.setPermissions(Arrays.asList(
                 Permission.PUBLISH, 
@@ -48,6 +48,10 @@ public class UserService {
                 Permission.UPDATE
             ));
         }
+    }
+
+    public User persist(User user) {
+        this.setDefaultPermissions(user);
         return repo.persist(user);
     }
 
