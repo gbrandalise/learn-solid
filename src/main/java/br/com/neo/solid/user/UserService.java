@@ -2,7 +2,7 @@ package br.com.neo.solid.user;
 
 import java.util.List;
 
-import br.com.neo.solid.profile.PermissionService;
+import br.com.neo.solid.permission.PermissionService;
 
 public class UserService {
 
