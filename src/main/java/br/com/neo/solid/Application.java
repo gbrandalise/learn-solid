@@ -2,16 +2,18 @@ package br.com.neo.solid;
 
 import java.util.List;
 
+import br.com.neo.solid.profile.PermissionService;
 import br.com.neo.solid.user.User;
+import br.com.neo.solid.user.User.Profile;
 import br.com.neo.solid.user.UserRepository;
 import br.com.neo.solid.user.UserService;
-import br.com.neo.solid.user.User.Profile;
 
 public class Application {
 
     public static void main(String[] args) {
         UserRepository repo = new UserRepository();
-        UserService service = new UserService(repo);
+        PermissionService permissionService = new PermissionService();
+        UserService service = new UserService(repo, permissionService);
 
         User user = new User("comum", "Usuário Comum", Profile.COMMON);
         service.persist(user);
