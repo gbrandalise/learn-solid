@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.neo.solid.user.User;
 import br.com.neo.solid.user.UserRepository;
 import br.com.neo.solid.user.UserService;
-import br.com.neo.solid.user.User.UserType;
+import br.com.neo.solid.user.User.Profile;
 
 public class Application {
 
@@ -13,13 +13,13 @@ public class Application {
         UserRepository repo = new UserRepository();
         UserService service = new UserService(repo);
 
-        User user = new User("comum", "Usuário Comum", UserType.COMMON);
+        User user = new User("comum", "Usuário Comum", Profile.COMMON);
         service.persist(user);
 
-        user = new User("admin", "Administrador", UserType.ADMIN);
+        user = new User("admin", "Administrador", Profile.ADMIN);
         service.persist(user);
 
-        user = new User("publicador", "Publicador", UserType.PUBLISHER);
+        user = new User("publicador", "Publicador", Profile.PUBLISHER);
         service.persist(user);
 
         List<User> users = service.findAll();

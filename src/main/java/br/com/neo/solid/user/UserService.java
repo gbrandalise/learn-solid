@@ -3,8 +3,8 @@ package br.com.neo.solid.user;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.neo.solid.profile.Profile;
-import br.com.neo.solid.user.User.UserType;
+import br.com.neo.solid.profile.Permission;
+import br.com.neo.solid.user.User.Profile;
 
 public class UserService {
 
@@ -27,21 +27,25 @@ public class UserService {
     }
 
     public User persist(User user) {
-        if (user.getUserType() == UserType.ADMIN) {
+        if (user.getUserType() == Profile.ADMIN) {
             user.setProfiles(Arrays.asList(
-                Profile.ADMIN
+                Permission.PUBLISH, 
+                Permission.CREATE, 
+                Permission.UPDATE, 
+                Permission.DELETE, 
+                Permission.LIST
             ));
-        } else if (user.getUserType() == UserType.PUBLISHER) {
+        } else if (user.getUserType() == Profile.PUBLISHER) {
             user.setProfiles(Arrays.asList(
-                Profile.PUBLISH,
-                Profile.DELETE,
-                Profile.LIST
+                Permission.PUBLISH,
+                Permission.DELETE,
+                Permission.LIST
             ));            
-        } else if (user.getUserType() == UserType.COMMON) {
+        } else {
             user.setProfiles(Arrays.asList(
-                Profile.CREATE,
-                Profile.LIST,
-                Profile.UPDATE
+                Permission.CREATE,
+                Permission.LIST,
+                Permission.UPDATE
             ));
         }
         return repo.persist(user);
