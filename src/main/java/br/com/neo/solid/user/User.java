@@ -20,6 +20,7 @@ public class User {
     private String login;
     @NonNull
     private String name;
+    private boolean admin;
     @NonNull
     private Profile profile;
     private List<Permission> permissions;
