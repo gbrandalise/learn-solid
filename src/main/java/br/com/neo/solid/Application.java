@@ -3,8 +3,10 @@ package br.com.neo.solid;
 import java.util.List;
 
 import br.com.neo.solid.permission.PermissionService;
+import br.com.neo.solid.profile.Administrator;
+import br.com.neo.solid.profile.Common;
+import br.com.neo.solid.profile.Publisher;
 import br.com.neo.solid.user.User;
-import br.com.neo.solid.user.User.Profile;
 import br.com.neo.solid.user.UserRepository;
 import br.com.neo.solid.user.UserService;
 
@@ -15,13 +17,13 @@ public class Application {
         PermissionService permissionService = new PermissionService();
         UserService service = new UserService(repo, permissionService);
 
-        User user = new User("comum", "Usuário Comum", Profile.COMMON);
+        User user = new User("comum", "Usuário Comum", new Common());
         service.persist(user);
 
-        user = new User("admin", "Administrador", Profile.ADMIN);
+        user = new User("admin", "Administrador", new Administrator());
         service.persist(user);
 
-        user = new User("publicador", "Publicador", Profile.PUBLISHER);
+        user = new User("publicador", "Publicador", new Publisher());
         service.persist(user);
 
         List<User> users = service.findAll();
