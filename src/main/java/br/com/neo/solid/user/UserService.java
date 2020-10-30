@@ -3,7 +3,7 @@ package br.com.neo.solid.user;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.neo.solid.profile.Permission;
+import br.com.neo.solid.permission.Permission;
 import br.com.neo.solid.user.User.Profile;
 
 public class UserService {
@@ -27,22 +27,22 @@ public class UserService {
     }
 
     public User persist(User user) {
-        if (user.getUserType() == Profile.ADMIN) {
-            user.setProfiles(Arrays.asList(
+        if (user.getProfile() == Profile.ADMIN) {
+            user.setPermissions(Arrays.asList(
                 Permission.PUBLISH, 
                 Permission.CREATE, 
                 Permission.UPDATE, 
                 Permission.DELETE, 
                 Permission.LIST
             ));
-        } else if (user.getUserType() == Profile.PUBLISHER) {
-            user.setProfiles(Arrays.asList(
+        } else if (user.getProfile() == Profile.PUBLISHER) {
+            user.setPermissions(Arrays.asList(
                 Permission.PUBLISH,
                 Permission.DELETE,
                 Permission.LIST
             ));            
         } else {
-            user.setProfiles(Arrays.asList(
+            user.setPermissions(Arrays.asList(
                 Permission.CREATE,
                 Permission.LIST,
                 Permission.UPDATE

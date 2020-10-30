@@ -1,4 +1,4 @@
-package br.com.neo.solid.profile;
+package br.com.neo.solid.permission;
 
 public enum Permission {
 
