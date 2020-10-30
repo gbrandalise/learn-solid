@@ -1,8 +1,7 @@
-package br.com.neo.solid.profile;
+package br.com.neo.solid.permission;
 
 import br.com.neo.solid.profile.Profile;
 import br.com.neo.solid.user.User;
-import br.com.neo.solid.user.User.Profile;
 
 public class PermissionService {
 
