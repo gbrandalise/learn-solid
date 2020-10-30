@@ -3,6 +3,7 @@ package br.com.neo.solid.user;
 import java.util.List;
 
 import br.com.neo.solid.permission.Permission;
+import br.com.neo.solid.profile.Profile;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +11,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class User {
-
-    public enum Profile {
-        ADMIN, COMMON, PUBLISHER
-    }
 
     private Long id;
     @NonNull
