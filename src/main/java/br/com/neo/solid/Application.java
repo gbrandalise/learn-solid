@@ -17,7 +17,7 @@ public class Application {
         PermissionService permissionService = new PermissionService();
         UserService service = new UserService(repo, permissionService);
 
-        User user = new User("comum", "Usuário Comum", new Common());
+        User user = new User("comum", "Usuário Comum", new Administrator());
         service.persist(user);
 
         user = new User("admin", "Administrador", new Administrator());
