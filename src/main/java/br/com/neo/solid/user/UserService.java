@@ -35,6 +35,7 @@ public class UserService {
                 Permission.DELETE, 
                 Permission.LIST
             ));
+            user.setAdmin(true);
         } else if (user.getProfile() == Profile.PUBLISHER) {
             user.setPermissions(Arrays.asList(
                 Permission.PUBLISH,
