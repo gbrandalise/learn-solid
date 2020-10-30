@@ -1,17 +1,17 @@
 package br.com.neo.solid.user;
 
-import java.util.Arrays;
 import java.util.List;
 
-import br.com.neo.solid.permission.Permission;
-import br.com.neo.solid.user.User.Profile;
+import br.com.neo.solid.profile.PermissionService;
 
 public class UserService {
 
     private UserRepository repo;
+    private PermissionService permissionService;
 
-    public UserService(UserRepository repo) {
+    public UserService(UserRepository repo, PermissionService permissionService) {
         this.repo = repo;
+        this.permissionService = permissionService;
     }
 
     public List<User> findAll() {
@@ -26,32 +26,8 @@ public class UserService {
         return repo.findByLogin(login).orElse(null);
     }
 
-    private void setDefaultPermissions(User user) {
-        if (user.getProfile() == Profile.ADMIN) {
-            user.setPermissions(Arrays.asList(
-                Permission.PUBLISH, 
-                Permission.CREATE, 
-                Permission.UPDATE, 
-                Permission.DELETE, 
-                Permission.LIST
-            ));
-        } else if (user.getProfile() == Profile.PUBLISHER) {
-            user.setPermissions(Arrays.asList(
-                Permission.PUBLISH,
-                Permission.DELETE,
-                Permission.LIST
-            ));            
-        } else {
-            user.setPermissions(Arrays.asList(
-                Permission.CREATE,
-                Permission.LIST,
-                Permission.UPDATE
-            ));
-        }
-    }
-
     public User persist(User user) {
-        this.setDefaultPermissions(user);
+        permissionService.setDefaultPermissions(user);
         return repo.persist(user);
     }
 
