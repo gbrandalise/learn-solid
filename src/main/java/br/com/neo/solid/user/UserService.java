@@ -22,10 +22,6 @@ public class UserService {
         return repo.findById(id).orElse(null);
     }
 
-    public User findByLogin(String login) {        
-        return repo.findByLogin(login).orElse(null);
-    }
-
     public User persist(User user) {
         permissionService.setDefaultPermissions(user);
         return repo.persist(user);

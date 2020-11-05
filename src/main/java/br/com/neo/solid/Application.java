@@ -4,8 +4,9 @@ import java.util.List;
 
 import br.com.neo.solid.permission.PermissionService;
 import br.com.neo.solid.profile.Administrator;
-import br.com.neo.solid.profile.Common;
 import br.com.neo.solid.profile.Publisher;
+import br.com.neo.solid.user.FileUserRepository;
+import br.com.neo.solid.user.MemoryUserRepository;
 import br.com.neo.solid.user.User;
 import br.com.neo.solid.user.UserRepository;
 import br.com.neo.solid.user.UserService;
@@ -13,7 +14,7 @@ import br.com.neo.solid.user.UserService;
 public class Application {
 
     public static void main(String[] args) {
-        UserRepository repo = new UserRepository();
+        UserRepository repo = new FileUserRepository();
         PermissionService permissionService = new PermissionService();
         UserService service = new UserService(repo, permissionService);
 
